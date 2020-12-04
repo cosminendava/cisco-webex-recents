@@ -1,23 +1,12 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import RecentsWidget from '@webex/widget-recents';
+import '@webex/widget-recents/src/momentum.scss';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RecentsWidget accessToken='ZDhmN2ZlNzEtYWRiNC00ZWViLTllYjEtN2FjZTdkZDAyZTlhNDQ4MDFiZjctZmM0_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f' />
     </div>
   );
 }
