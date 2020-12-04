@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/cisco-webex-recents/static/css/main.3c70258c.chunk.css",
+    "main.js": "/cisco-webex-recents/static/js/main.b14f8e16.chunk.js",
+    "main.js.map": "/cisco-webex-recents/static/js/main.b14f8e16.chunk.js.map",
+    "runtime-main.js": "/cisco-webex-recents/static/js/runtime-main.f829d5dd.js",
+    "runtime-main.js.map": "/cisco-webex-recents/static/js/runtime-main.f829d5dd.js.map",
+    "static/css/2.41b7c490.chunk.css": "/cisco-webex-recents/static/css/2.41b7c490.chunk.css",
+    "static/js/2.f0291991.chunk.js": "/cisco-webex-recents/static/js/2.f0291991.chunk.js",
+    "static/js/2.f0291991.chunk.js.map": "/cisco-webex-recents/static/js/2.f0291991.chunk.js.map",
+    "static/js/3.034ff1fd.chunk.js": "/cisco-webex-recents/static/js/3.034ff1fd.chunk.js",
+    "static/js/3.034ff1fd.chunk.js.map": "/cisco-webex-recents/static/js/3.034ff1fd.chunk.js.map",
+    "index.html": "/cisco-webex-recents/index.html",
+    "static/css/2.41b7c490.chunk.css.map": "/cisco-webex-recents/static/css/2.41b7c490.chunk.css.map",
+    "static/css/main.3c70258c.chunk.css.map": "/cisco-webex-recents/static/css/main.3c70258c.chunk.css.map",
+    "static/js/2.f0291991.chunk.js.LICENSE.txt": "/cisco-webex-recents/static/js/2.f0291991.chunk.js.LICENSE.txt",
+    "static/media/momentum.scss": "/cisco-webex-recents/static/media/momentum-ui-icons.911dd029.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f829d5dd.js",
+    "static/css/2.41b7c490.chunk.css",
+    "static/js/2.f0291991.chunk.js",
+    "static/css/main.3c70258c.chunk.css",
+    "static/js/main.b14f8e16.chunk.js"
+  ]
+}
