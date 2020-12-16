@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import './index.css';
-import App from './App';
+import Recents from './Recents';
+import Space from './Space';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/" component={App}>
-      </Route>
+      <Route path="/" component={Recents}></Route>
+      {/* <Route path="/" component={Space}></Route> */}
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

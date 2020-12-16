@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './Recents.css';
 import RecentsWidget from '@webex/widget-recents';
 import '@webex/widget-recents/src/momentum.scss';
 import qs from 'querystring';
@@ -22,7 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="Recents">
         <RecentsWidget accessToken={this.state.accessToken} onEvent={this.callback}/>
       </div>
     );
