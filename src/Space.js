@@ -23,6 +23,8 @@ class App extends Component {
       },
       initialActivity: 'message'
     };
+
+    LCC.addMessageHandler(this.messageHandler.bind(this));
   }
 
   componentDidMount() {
@@ -45,6 +47,23 @@ class App extends Component {
       name,
       detail
     });
+  }
+
+  messageHandler(message) {
+    console.log('React', JSON.stringify(message));
+
+    if (message.action === 'DESTINATION_CHANGE') {
+      console.log('React', 'IN: Destination change');
+      console.log('React', this.state.destinationId);
+      this.setState({
+        destinationId: undefined
+      });
+      console.log('React', this.state.destinationId);
+      this.setState({
+        destinationId: message.value.destinationId
+      });
+      console.log('React', this.state.destinationId);
+    }
   }
 }
 

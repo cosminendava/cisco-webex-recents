@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <div className="Recents">
-        <RecentsWidget accessToken={this.state.accessToken} onEvent={this.callback}/>
+        <RecentsWidget accessToken={this.state.accessToken} onEvent={this.callback} enableUserProfile={false} />
       </div>
     );
   }
