@@ -23,34 +23,77 @@ class App extends Component {
 
         webex.once('ready', () => {
             if (webex.canAuthorize) {
-                webex.messages.listen().then(() => {
-                    console.log('listening to message events');
-                    webex.messages.on('created', (event) => {
-                        let customData = {};
-                        Promise.all([
-                            webex.rooms.get(event.data.roomId),
-                            webex.people.get(event.data.personId)
-                        ]).then((results) => {
-                            customData.room = results[0];
-                            customData.person = results[1];
+                webex.people.get('me').then((userInfo) => {
+                    console.log('Webex SDK', userInfo);
 
-                            event.customData = customData;
-                            console.log('React', event);
-                            
-                            LCC.sendMessage({
-                                event
-                            });
-                        });
-                    });
-                });
+                    webex.rooms.listWithReadStatus().then((response) => {
+                        let rooms = response.items;
 
-                webex.memberships.listen().then(() => {
-                    console.log('listening to membership events');
-                    webex.memberships.on('seen', (event) => {
-                        console.log(event);
+                        for (let room of rooms) {
+                            room.status = room.lastActivityDate > room.lastSeenActivityDate ? 'unread' : 'read';
+                        }
+
+                        
+                        console.log('Webex SDK', rooms);
 
                         LCC.sendMessage({
-                            event
+                            name: 'rooms:listWithReadStatus',
+                            items: rooms
+                        });
+                    })
+
+                    webex.messages.listen().then(() => {
+                        console.log('Webex SDK', 'listening to message events');
+                        webex.messages.on('created', (event) => {
+                            if (event.data.personId !== userInfo.id) {
+                                webex.rooms.getWithReadStatus(event.data.roomId).then((room) => {
+                                    console.log('Webex SDK', room);
+
+                                    if (room.lastActivityDate > room.lastSeenActivityDate) {
+                                        let customEvent = {
+                                            name: 'rooms:unread',
+                                            roomId: event.data.roomId
+                                        };
+            
+                                        console.log('Webex SDK', customEvent);
+                                        
+                                        LCC.sendMessage(customEvent);
+                                    }
+                                });
+                            }
+
+                            // let customData = {};
+                            
+                            // Promise.all([
+                            //     webex.rooms.get(event.data.roomId),
+                            //     webex.people.get(event.data.personId)
+                            // ]).then((results) => {
+                            //     customData.room = results[0];
+                            //     customData.person = results[1];
+
+                            //     event.customData = customData;
+                            //     console.log('Webex SDK', event);
+                                
+                            //     LCC.sendMessage({
+                            //         event
+                            //     });
+                            // });
+                        });
+                    });
+
+                    webex.memberships.listen().then(() => {
+                        console.log('Webex SDK', 'listening to membership events');
+                        webex.memberships.on('seen', (event) => {
+                            if (event.data.personId === userInfo.id) {
+                                let customEvent = {
+                                    name: 'rooms:read',
+                                    roomId: event.data.roomId
+                                };
+
+                                console.log('Webex SDK', customEvent);
+                                
+                                LCC.sendMessage(customEvent);
+                            }
                         });
                     });
                 });
