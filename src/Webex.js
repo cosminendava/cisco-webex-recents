@@ -52,7 +52,7 @@ class App extends Component {
                                     if (room.lastActivityDate > room.lastSeenActivityDate) {
                                         let customEvent = {
                                             name: 'rooms:unread',
-                                            roomId: event.data.roomId
+                                            room
                                         };
             
                                         console.log('Webex SDK', customEvent);
@@ -61,23 +61,6 @@ class App extends Component {
                                     }
                                 });
                             }
-
-                            // let customData = {};
-                            
-                            // Promise.all([
-                            //     webex.rooms.get(event.data.roomId),
-                            //     webex.people.get(event.data.personId)
-                            // ]).then((results) => {
-                            //     customData.room = results[0];
-                            //     customData.person = results[1];
-
-                            //     event.customData = customData;
-                            //     console.log('Webex SDK', event);
-                                
-                            //     LCC.sendMessage({
-                            //         event
-                            //     });
-                            // });
                         });
                     });
 
@@ -85,14 +68,20 @@ class App extends Component {
                         console.log('Webex SDK', 'listening to membership events');
                         webex.memberships.on('seen', (event) => {
                             if (event.data.personId === userInfo.id) {
-                                let customEvent = {
-                                    name: 'rooms:read',
-                                    roomId: event.data.roomId
-                                };
+                                webex.rooms.getWithReadStatus(event.data.roomId).then((room) => {
+                                    console.log('Webex SDK', room);
 
-                                console.log('Webex SDK', customEvent);
-                                
-                                LCC.sendMessage(customEvent);
+                                    if (room.lastActivityDate <= room.lastSeenActivityDate) {
+                                        let customEvent = {
+                                            name: 'rooms:read',
+                                            room
+                                        };
+            
+                                        console.log('Webex SDK', customEvent);
+                                        
+                                        LCC.sendMessage(customEvent);
+                                    }
+                                });
                             }
                         });
                     });
