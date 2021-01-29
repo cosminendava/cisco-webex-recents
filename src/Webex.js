@@ -30,7 +30,7 @@ class App extends Component {
                         let rooms = response.items;
 
                         for (let room of rooms) {
-                            room.status = room.lastActivityDate > room.lastSeenActivityDate ? 'unread' : 'read';
+                            room.c__status = room.lastActivityDate > room.lastSeenActivityDate ? 'unread' : 'read';
                         }
 
                         
