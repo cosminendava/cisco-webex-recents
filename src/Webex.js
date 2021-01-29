@@ -50,6 +50,7 @@ class App extends Component {
                                     console.log('Webex SDK', room);
 
                                     if (room.lastActivityDate > room.lastSeenActivityDate) {
+                                        room.c__status = 'unread';
                                         let customEvent = {
                                             name: 'rooms:unread',
                                             room
@@ -72,6 +73,7 @@ class App extends Component {
                                     console.log('Webex SDK', room);
 
                                     if (room.lastActivityDate <= room.lastSeenActivityDate) {
+                                        room.c__status = 'read';
                                         let customEvent = {
                                             name: 'rooms:read',
                                             room
