@@ -93,51 +93,6 @@ class App extends Component {
 
         LCC.addMessageHandler(async (message) => {
             console.log('Webex SDK', message);
-
-            if (message.name === 'rooms:open:personEmail') {
-                let roomFound = false;
-
-                let responsePeople = await webex.people.list({
-                    email: message.personEmail
-                });
-                for (let person of responsePeople.items) {
-                    let responseRoomsList = await webex.rooms.list();
-                    for (let room of responseRoomsList.items) {
-                        if (room.title === person.displayName) {
-                            let responseMemberships = await webex.memberships.list({
-                                roomId: room.id,
-                                personEmail: message.personEmail
-                            })
-                            for (let membership of responseMemberships.items) {
-                                roomFound = true;
-
-                                let customEvent = {
-                                    name: 'rooms:open:personEmail',
-                                    personEmail: message.personEmail,
-                                    roomId: membership.roomId,
-                                    roomTitle: membership.personDisplayName
-                                };
-
-                                console.log('Webex SDK', customEvent);
-
-                                LCC.sendMessage(customEvent);
-                            }
-                        }
-                    }
-                }
-
-                if (roomFound === false) {
-                    let customEvent = {
-                        name: 'rooms:open:personEmail',
-                        personEmail: message.personEmail,
-                        roomTitle: message.roomTitle
-                    };
-
-                    console.log('Webex SDK', customEvent);
-
-                    LCC.sendMessage(customEvent);
-                }
-            }
         });
     }
 
