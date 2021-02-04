@@ -9,9 +9,9 @@ import Webex from './Webex';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      {/* <Route path="/" component={Recents}></Route> */}
+      <Route path="/" component={Recents}></Route>
       {/* <Route path="/" component={Space}></Route> */}
-      <Route path="/" component={Webex}></Route>
+      {/* <Route path="/" component={Webex}></Route> */}
     </Switch>
   </BrowserRouter>,
   document.getElementById('root')

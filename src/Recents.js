@@ -29,9 +29,6 @@ class App extends Component {
   }
 
   callback(name, detail) {
-    console.log('React', name);
-    console.log('React', detail);
-
     LCC.sendMessage({
       name,
       detail
