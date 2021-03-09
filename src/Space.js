@@ -47,20 +47,6 @@ class App extends Component {
   }
 
   messageHandler(message) {
-    console.log('React', JSON.stringify(message));
-
-    if (message.action === 'DESTINATION_CHANGE') {
-      console.log('React', 'IN: Destination change');
-      console.log('React', this.state.destinationId);
-      this.setState({
-        destinationId: undefined
-      });
-      console.log('React', this.state.destinationId);
-      this.setState({
-        destinationId: message.value.destinationId
-      });
-      console.log('React', this.state.destinationId);
-    }
   }
 }
 
